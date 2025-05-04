@@ -104,3 +104,7 @@ def serve(path):
 if __name__ == '__main__':
     app.run()
 
+def handler(request):
+    with app.request_context(request):
+        return app.full_dispatch_request()
+
