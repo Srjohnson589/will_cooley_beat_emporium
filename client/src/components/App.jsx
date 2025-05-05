@@ -22,7 +22,7 @@ function App(){
   const [allInstruments, setAllInstruments] = useState([])
   const [allReviews, setAllReviews] = useState([])
 
-  const apiUrl = env.process(FLASK_API_URL)
+  const apiUrl = import.meta.env.FLASK_API_URL;
 
   useEffect(()=>{
     checkUser()
