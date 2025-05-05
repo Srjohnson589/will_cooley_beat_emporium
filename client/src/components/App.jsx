@@ -22,13 +22,15 @@ function App(){
   const [allInstruments, setAllInstruments] = useState([])
   const [allReviews, setAllReviews] = useState([])
 
+  const apiUrl = env.process(FLASK_API_URL)
+
   useEffect(()=>{
     checkUser()
   }, [])
   
   const checkUser = async () =>{
     try{ 
-      const res = await fetch('/api/check_session')
+      const res = await fetch(`${apiUrl}/api/check_session`)
       const userData = await res.json()
       if(res.ok){
         login(userData)
@@ -41,7 +43,7 @@ function App(){
   }
 
   useEffect(()=>{
-    fetch('/api/instruments')
+    fetch(`${apiUrl}/api/instruments`)
     .then(res=>res.json())
     .then(instrumentsData=>{
       setAllInstruments(instrumentsData)
@@ -49,7 +51,7 @@ function App(){
   }, [])
 
   useEffect(()=>{
-    fetch('/api/reviews')
+    fetch(`${apiUrl}/api/reviews`)
     .then(res=>res.json())
     .then(reviewsData=>{
       setAllReviews(reviewsData)
@@ -75,7 +77,7 @@ function App(){
   }
 
   const newRentalPost = (arr)=>{
-        fetch('/api/rentals', {
+        fetch(`${apiUrl}/api/rentals`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json'
@@ -104,7 +106,7 @@ function App(){
       }))
     }
 
-    fetch('/api/instruments')
+    fetch(`${apiUrl}/api/instruments`)
     .then(res=>res.json())
     .then(instrumentsData=>{
       setAllInstruments(instrumentsData)
@@ -121,7 +123,7 @@ function App(){
     update(prevUserData=>({
       ...prevUserData, rentals: [...rentalsAfterDelete]
     }))
-    fetch('/api/instruments')
+    fetch(`${apiUrl}/api/instruments`)
     .then(res=>res.json())
     .then(instrumentsData=>{
       setAllInstruments(instrumentsData)
