@@ -20,16 +20,16 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5555',
+        target: 'https://beat-emporium-api.onrender.com',
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/create_checkout_session': {
-        target: 'http://localhost:5555',
+        target: 'https://beat-emporium-api.onrender.com',
         changeOrigin: true,
       },
       '/session_status': {
-        target: 'http://localhost:5555',
+        target: 'https://beat-emporium-api.onrender.com',
         changeOrigin: true,
       }
     },
